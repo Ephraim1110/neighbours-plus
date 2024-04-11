@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Utilisateur</title>
+</head>
+<body>
+    <h1>Interface Utilisateur</h1>
+    <button id="startButton">Démarrer la ferris wheel</button>
+    <button id="stopButton">Arrêter la ferris wheel</button>
+
+    <script>
+        document.getElementById("startButton").addEventListener("click", async function() {
+            try {
+                const response = await fetch("http://127.0.0.1:3000/start", { method: "POST" });
+                if (!response.ok) {
+                    throw new Error("Erreur lors du démarrage de la ferris wheel");
+                }
+                console.log("La ferris wheel a été démarrée avec succès !");
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        document.getElementById("stopButton").addEventListener("click", async function() {
+            try {
+                const response = await fetch("http://127.0.0.1:3000/stop", { method: "POST" });
+                if (!response.ok) {
+                    throw new Error("Erreur lors de l'arrêt de la ferris wheel");
+                }
+                console.log("La ferris wheel a été arrêtée avec succès !");
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
